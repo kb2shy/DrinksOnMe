@@ -26,7 +26,7 @@ export default class App extends React.Component {
       <div>
         <h1>Mod 4 solo React App from scratch</h1>
         <h3>Number of cocktails in cocktail list: {this.state.cocktaillist.length} </h3>
-        <CocktailContainer />
+        <CocktailContainer cocktails={this.state.cocktaillist} />
       </div>
     )
   }
