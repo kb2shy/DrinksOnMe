@@ -12,6 +12,7 @@ export default class App extends React.Component {
     this.state = {
       cocktaillist: [],
       cocktail: {},
+      index: 0,
     }
   }
 
@@ -28,14 +29,23 @@ export default class App extends React.Component {
     this.setState({ cocktail })
   }
 
+  handleDisplay5Click = () => {
+    const index = this.state.index + 5 >= this.state.cocktaillist.length ? 0 :
+      this.state.index + 5;
+    this.setState({ index })
+  }
 
   render() {
     return (
       <div>
         <h1>Mod 4 solo React App from scratch</h1>
         <h3>Number of cocktails in cocktail list: {this.state.cocktaillist.length} </h3>
-        <div className="divy">
-          <CocktailContainer cocktails={this.state.cocktaillist} handleCocktailClick={this.handleCocktailClick}/>
+        <div className="app-div">
+          <CocktailContainer
+            cocktails={this.state.cocktaillist.slice(this.state.index, this.state.index + 5)}
+            handleCocktailClick={this.handleCocktailClick}
+            handleDisplay5Click={this.handleDisplay5Click}
+          />
           <DisplayContainer cocktail={this.state.cocktail}/>
         </div>
       </div>
