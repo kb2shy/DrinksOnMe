@@ -6,11 +6,16 @@ export default class CocktailContainer extends Component {
 
   render() {
     return (
-      <div>
+      <div className="cocktailcontainer-div">
         <h1>Cocktail List</h1>
         <ul>{this.props.cocktails.map((cocktail, index) => {
-          return <Cocktail key={index} cocktail={cocktail} handleClick={this.props.handleCocktailClick}/>
-        })}</ul>
+          return <Cocktail key={index} cocktail={cocktail}
+                  handleCocktailClick={this.props.handleCocktailClick}/>
+                })}
+        </ul>
+        <button onClick={this.props.handleDisplay5Click}>
+          <h3>Display next 5</h3>
+        </button>
       </div>
     )
   }
