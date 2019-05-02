@@ -1,41 +1,33 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import CocktailContainer from './containers/CocktailContainer';
+
+const Cocktail_URL = "http://localhost:3000/api/v1/cocktails";
 
 export default class App extends React.Component {
   constructor() {
     super()
+    this.state = {
+      cocktaillist: [],
+    }
+  }
 
+  componentDidMount() {
+    fetch(Cocktail_URL)
+    .then(res => res.json())
+    .then(cocktails => {
+      this.setState( { cocktaillist: cocktails })
+    })
   }
 
   render() {
     return (
       <div>
-        Mod 4 solo React App from scratch
+        <h1>Mod 4 solo React App from scratch</h1>
+        <h3>Number of cocktails in cocktail list: {this.state.cocktaillist.length} </h3>
+        <CocktailContainer />
       </div>
     )
   }
 }
-
-// function App() {
-//   return (
-//     <div className="App">
-//       <header className="App-header">
-//         <img src={logo} className="App-logo" alt="logo" />
-//         <p>
-//           Edit <code>src/App.js</code> and save to reload.
-//         </p>
-//         <a
-//           className="App-link"
-//           href="https://reactjs.org"
-//           target="_blank"
-//           rel="noopener noreferrer"
-//         >
-//           Learn React
-//         </a>
-//       </header>
-//     </div>
-//   );
-// }
-//
-// export default App;
