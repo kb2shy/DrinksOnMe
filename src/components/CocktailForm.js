@@ -26,7 +26,8 @@ export default class CocktailForm extends Component {
 
   render() {
     return(
-      <div>
+      <div className="cocktailform-div">
+        <h1>Create Cocktail</h1>
         <form>
           Name: <input name="name" value={this.state.name} onChange={(e) => this.onChange(e)}/>
         </form>

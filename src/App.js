@@ -54,7 +54,7 @@ export default class App extends React.Component {
   }
 
   onCreateCocktailButton = () => {
-    console.log("on cocktaillist, button pressed")
+    this.setState({ displayThis: 'createCocktail', cocktail: {},})
   }
 
   render() {
