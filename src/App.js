@@ -13,6 +13,7 @@ export default class App extends React.Component {
       cocktaillist: [],
       cocktail: {},
       index: 0,
+      filterByAlcohol: [],
     }
   }
 
@@ -44,6 +45,11 @@ export default class App extends React.Component {
     const index = this.state.index - 5 < 0 ?
       this.state.index = this.state.cocktaillist.length - 5 : this.state.index - 5;
     this.setState({ index })
+  }
+
+  showOnlyTheseCocktails = () => {
+    let filterByAlcohol;
+    fetch()
   }
 
   render() {
