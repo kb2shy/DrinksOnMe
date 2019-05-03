@@ -53,10 +53,8 @@ export default class App extends React.Component {
     fetch()
   }
 
-  inDisplayThis = (thisState) => {
-    if (thisState === 'cocktailInfo') {
-      return <DisplayContainer cocktail={this.state.cocktail}/>
-    }
+  onCreateCocktailButton = () => {
+    console.log("on cocktaillist, button pressed")
   }
 
   render() {
@@ -70,8 +68,9 @@ export default class App extends React.Component {
             handleCocktailClick={this.handleCocktailClick}
             next10={this.next10}
             prev10={this.prev10}
+            onCreateCocktailButton={this.onCreateCocktailButton}
           />
-          {this.inDisplayThis(this.state.displayThis)}
+          <DisplayContainer displayThis={this.state.displayThis} cocktail={this.state.cocktail}/>
         </div>
       </div>
     )

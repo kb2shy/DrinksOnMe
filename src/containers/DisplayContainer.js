@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
 import Cocktail from '../components/Cocktail'
+import CocktailForm from '../components/CocktailForm'
 import '../App.css'
 
 export default class DisplayContainer extends Component {
 
-  // Can I dynamically render a component in this container
-  // based on whether the user clicked on either a cocktail or
-  // a create a cocktail button
-
-  components = {
-    cocktailInfo: Cocktail
+  inDisplayThis = (thisState) => {
+    if (thisState === 'cocktailInfo') {
+      return <Cocktail cocktail={this.props.cocktail}/>
+    } else if (thisState === 'cocktailForm') {
+      return <CocktailForm />
+    }
   }
 
   render() {
     return (
       <div className="displaycontainer-div">
-        <Cocktail cocktail={this.props.cocktail} />
+        {this.inDisplayThis(this.props.displayThis)}
       </div>
     )
   }
