@@ -4,15 +4,18 @@ import '../App.css'
 
 export default class DisplayContainer extends Component {
 
+  // Can I dynamically render a component in this container
+  // based on whether the user clicked on either a cocktail or
+  // a create a cocktail button
+
+  components = {
+    cocktailInfo: Cocktail
+  }
+
   render() {
     return (
       <div className="displaycontainer-div">
-        <div className="displaycontainer-header">
-          <h1>Cocktail info</h1>
-        </div>
-        <div className="displayCocktail">
-          <Cocktail cocktail={this.props.cocktail}/>
-        </div>
+        <Cocktail cocktail={this.props.cocktail} />
       </div>
     )
   }

@@ -13,7 +13,7 @@ export default class App extends React.Component {
       cocktaillist: [],
       cocktail: {},
       index: 0,
-      displayThis: 'cocktailInfo',
+      displayThis: '',
       filterByAlcohol: [],
     }
   }
@@ -32,8 +32,7 @@ export default class App extends React.Component {
     fetch(Cocktail_URL + `/${cocktail.id}`)
     .then(res => res.json())
     .then(cocktail => {
-      this.setState({ cocktail }, console.log(this.state.cocktail))
-
+      this.setState({ cocktail, displayThis: 'cocktailInfo' })
     })
   }
 
@@ -54,8 +53,10 @@ export default class App extends React.Component {
     fetch()
   }
 
-  inDisplayContainer = (comp) => {
-
+  inDisplayThis = (thisState) => {
+    if (thisState === 'cocktailInfo') {
+      return <DisplayContainer cocktail={this.state.cocktail}/>
+    }
   }
 
   render() {
@@ -70,7 +71,7 @@ export default class App extends React.Component {
             next10={this.next10}
             prev10={this.prev10}
           />
-          <DisplayContainer cocktail={this.state.cocktail}/>
+          {this.inDisplayThis(this.state.displayThis)}
         </div>
       </div>
     )
