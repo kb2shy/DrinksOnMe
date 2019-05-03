@@ -47,7 +47,13 @@
   margin: 10px;
 }
 
+.displaycontainer-div, button {
+  align-content: center;
+  justify-content: center;
+}
+
 button {
+  width: 111px;
   margin: 2px;
 }
 

@@ -18,12 +18,22 @@ export default class CocktailContainer extends Component {
         <ul>
           {this.cocktails()}
         </ul>
-        <button onClick={this.props.prev5}>
-          <h3>Previous prev 5</h3>
-        </button>
-        <button onClick={this.props.next5}>
-          <h3>Display next 5</h3>
-        </button>
+
+        <div>
+          <button onClick={this.props.prev10}>
+            <h3>Previous 10</h3>
+          </button>
+          <button onClick={this.props.next10}>
+            <h3>Next 10</h3>
+          </button>
+        </div>
+
+        <div>
+          <button onClick={this.props.createCocktail}>
+            <h3>Create Cocktail</h3>
+          </button>
+        </div>
+
       </div>
     )
   }
