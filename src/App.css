@@ -37,12 +37,18 @@
   width: 30%;
   height: 100%;
   float: left;
+  margin: 10px;
 }
 
 .displaycontainer-div {
   display: inline-block;
   width: 60%;
   height: 100%;
+  margin: 10px;
+}
+
+button {
+  margin: 2px;
 }
 
 /* .divy {

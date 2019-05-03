@@ -26,12 +26,23 @@ export default class App extends React.Component {
 
   handleCocktailClick = (cocktail) => {
     // console.log("From app this cocktail clicked: ", cocktail);
-    this.setState({ cocktail })
+    // this.setState({ cocktail })
+    fetch(Cocktail_URL + `/${cocktail.id}`)
+    .then(res => res.json())
+    .then(cocktail => {
+      this.setState({ cocktail }, ()=>console.log(cocktail))
+    })
   }
 
-  handleDisplay5Click = () => {
+  next5 = () => {
     const index = this.state.index + 5 >= this.state.cocktaillist.length ? 0 :
       this.state.index + 5;
+    this.setState({ index })
+  }
+
+  prev5 = () => {
+    const index = this.state.index - 5 < 0 ?
+      this.state.index = this.state.cocktaillist.length - 5 : this.state.index - 5;
     this.setState({ index })
   }
 
@@ -44,7 +55,8 @@ export default class App extends React.Component {
           <CocktailContainer
             cocktails={this.state.cocktaillist.slice(this.state.index, this.state.index + 5)}
             handleCocktailClick={this.handleCocktailClick}
-            handleDisplay5Click={this.handleDisplay5Click}
+            next5={this.next5}
+            prev5={this.prev5}
           />
           <DisplayContainer cocktail={this.state.cocktail}/>
         </div>
