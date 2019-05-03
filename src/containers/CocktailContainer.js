@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
-import Cocktail from '../components/Cocktail'
 import '../App.css'
 
 export default class CocktailContainer extends Component {
+
+  cocktails = () => {
+    return this.props.cocktails.map((cocktail, index) =>
+      (<li key={index} cocktail={cocktail}
+           onClick={() => console.log("This cocktail clicked", cocktail)}>
+        {cocktail.name}</li>)
+    )
+  }
 
   render() {
     return (
       <div className="cocktailcontainer-div">
         <h1>Cocktail List</h1>
-        <ul>{this.props.cocktails.map((cocktail, index) => {
-          return <Cocktail key={index} cocktail={cocktail}
-                  handleCocktailClick={this.props.handleCocktailClick}/>
-                })}
+        <ul>
+          {this.cocktails()}
         </ul>
         <button onClick={this.props.prev5}>
           <h3>Previous prev 5</h3>

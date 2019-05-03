@@ -6,9 +6,9 @@ export default class DisplayContainer extends Component {
   ingredients = () => {
     if (this.props.cocktail.proportions) {
       let proportions = this.props.cocktail.proportions;
-      console.log(proportions instanceof Object)
+      // console.log(proportions instanceof Object)
       let propArray = Array.prototype.slice.call(proportions);
-      console.log(propArray instanceof Array)
+      // console.log(propArray instanceof Array)
       return propArray.map(ing => {
         return <li>{ing.ingredient_name}</li>;
       })
