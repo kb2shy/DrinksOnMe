@@ -17,8 +17,6 @@ export default class Cocktail extends Component {
   render() {
     return (
       <div className="displaycontainer-div">
-        <h1>Cocktail Info</h1>
-        <h2>{this.props.cocktail.name}</h2>
         <h3>Description</h3>
         <p>{this.props.cocktail.description}</p>
         <h3>Instructions</h3>
