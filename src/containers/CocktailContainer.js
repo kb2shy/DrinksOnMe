@@ -13,7 +13,10 @@ export default class CocktailContainer extends Component {
                   handleCocktailClick={this.props.handleCocktailClick}/>
                 })}
         </ul>
-        <button onClick={this.props.handleDisplay5Click}>
+        <button onClick={this.props.prev5}>
+          <h3>Previous prev 5</h3>
+        </button>
+        <button onClick={this.props.next5}>
           <h3>Display next 5</h3>
         </button>
       </div>

@@ -3,15 +3,29 @@ import '../App.css'
 
 export default class DisplayContainer extends Component {
 
+  ingredients = () => {
+    if (this.props.cocktail.proportions) {
+      let proportions = this.props.cocktail.proportions;
+      console.log(proportions instanceof Object)
+      let propArray = Array.prototype.slice.call(proportions);
+      console.log(propArray instanceof Array)
+      return propArray.map(ing => {
+        return <li>{ing.ingredient_name}</li>;
+      })
+    }
+  }
+
   render() {
     return (
       <div className="displaycontainer-div">
         <h1>Cocktail Info</h1>
-        <h1>{this.props.cocktail.name}</h1>
+        <h2>{this.props.cocktail.name}</h2>
         <h3>Description</h3>
         <p>{this.props.cocktail.description}</p>
         <h3>Instructions</h3>
         <p>{this.props.cocktail.instructions}</p>
+        <h4>Ingredients</h4>
+        <ul>{this.ingredients()}</ul>
       </div>
     )
   }
