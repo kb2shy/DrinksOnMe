@@ -35,15 +35,15 @@ export default class App extends React.Component {
     })
   }
 
-  next5 = () => {
-    const index = this.state.index + 5 >= this.state.cocktaillist.length ? 0 :
-      this.state.index + 5;
+  next10 = () => {
+    const index = this.state.index + 10 >= this.state.cocktaillist.length ? 0 :
+      this.state.index + 10;
     this.setState({ index })
   }
 
-  prev5 = () => {
-    const index = this.state.index - 5 < 0 ?
-      this.state.index = this.state.cocktaillist.length - 5 : this.state.index - 5;
+  prev10 = () => {
+    const index = this.state.index - 10 < 0 ?
+      this.state.index = this.state.cocktaillist.length - 10 : this.state.index - 10;
     this.setState({ index })
   }
 
@@ -59,10 +59,10 @@ export default class App extends React.Component {
         <h3>Number of cocktails in cocktail list: {this.state.cocktaillist.length} </h3>
         <div className="app-div">
           <CocktailContainer
-            cocktails={this.state.cocktaillist.slice(this.state.index, this.state.index + 5)}
+            cocktails={this.state.cocktaillist.slice(this.state.index, this.state.index + 10)}
             handleCocktailClick={this.handleCocktailClick}
-            next5={this.next5}
-            prev5={this.prev5}
+            next10={this.next10}
+            prev10={this.prev10}
           />
           <DisplayContainer cocktail={this.state.cocktail}/>
         </div>
