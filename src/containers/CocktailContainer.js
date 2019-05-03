@@ -29,7 +29,7 @@ export default class CocktailContainer extends Component {
         </div>
 
         <div>
-          <button onClick={this.props.createCocktail}>
+          <button onClick={this.props.onCreateCocktailButton}>
             <h3>Create Cocktail</h3>
           </button>
         </div>
