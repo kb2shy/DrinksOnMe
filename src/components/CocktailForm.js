@@ -25,10 +25,10 @@ export default class CocktailForm extends Component {
     this.setState(state)
   }
 
-  addIngredientField = () => {
-    return (<div>
-      <input value={this.state.proportions} name="proportions" onChange={this.onChange}/>
-      <button onClick={(e) => {e.preventDefault(); this.addIngredient()}}>Add</button>
+  addIngredientField = (ing, index) => {
+    return (<div key={index}>
+      <input value={ing.value} name={index} onChange={this.onChange}/>
+      <button onClick={(e) => {e.preventDefault(); this.addIngredient(ing)}}>Add</button>
       </div>
     )
   }
@@ -54,7 +54,7 @@ export default class CocktailForm extends Component {
           <div>
             <h4>Proportions:</h4>
             <ul>
-              {this.state.proportions.map((ing) => this.addIngredientField(ing))}
+              {this.state.proportions.map((ing, index) => this.addIngredientField(ing, index))}
             </ul>
 
           </div>
