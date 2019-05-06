@@ -9,7 +9,16 @@ export default class Cocktail extends Component {
       let propArray = Array.prototype.slice.call(proportions);
       // console.log(propArray instanceof Array)
       return propArray.map(ing => {
+<<<<<<< HEAD
         return (<li>{ing.ingredient_name}</li>);
+=======
+        // return info in a table format
+        return (
+          <tr>
+            <td>{ing.ingredient_name}</td>
+            <td>{ing.amount}</td>
+          </tr>);
+>>>>>>> 7fee040258932fbb524b7228b1fd26e94dc08a25
       })
     }
   }
@@ -23,7 +32,13 @@ export default class Cocktail extends Component {
         <h3>Instructions</h3>
         <p>{this.props.cocktail.instructions}</p>
         <h4>Ingredients</h4>
-        <ul>{this.ingredients()}</ul>
+        <table className="cocktailingredient-table">
+          <tr>
+            <th>Ingredient</th>
+            <th>Proportion</th>
+          </tr>
+          {this.ingredients()}
+        </table>
       </div>
     )
   }
