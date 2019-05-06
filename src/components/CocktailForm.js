@@ -9,8 +9,8 @@ export default class CocktailForm extends Component {
       description: '',
       instructions: '',
       proportions: [''],
-      ingIndex: 0,
-      ingValue: '',
+      // ingIndex: 0,
+      // ingValue: '',
     }
 
   }
