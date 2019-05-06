@@ -75,7 +75,7 @@ export default class App extends React.Component {
       }
       return false;
     })
-    this.setState({ filteredcocktaillist })
+    this.setState({ index: 0, filteredcocktaillist })
   }
 
   render() {
