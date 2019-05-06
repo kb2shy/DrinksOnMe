@@ -38,14 +38,14 @@ export default class App extends React.Component {
   }
 
   next10 = () => {
-    const index = this.state.index + 10 >= this.state.cocktaillist.length ? 0 :
+    const index = this.state.index + 10 >= this.state.filteredcocktaillist.length ? 0 :
       this.state.index + 10;
     this.setState({ index })
   }
 
   prev10 = () => {
     const index = this.state.index - 10 < 0 ?
-      this.state.cocktaillist.length - 10 : this.state.index - 10;
+      this.state.filteredcocktaillist.length - 10 : this.state.index - 10;
     this.setState({ index })
   }
 
@@ -75,7 +75,7 @@ export default class App extends React.Component {
       }
       return false;
     })
-    this.setState({ index: 0, filteredcocktaillist })
+    this.setState({ index: 0, filteredcocktaillist: filteredcocktaillist })
   }
 
   render() {

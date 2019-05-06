@@ -29,11 +29,13 @@ export default class Cocktail extends Component {
         <p>{this.props.cocktail.instructions}</p>
         <h4>Ingredients</h4>
         <table className="cocktailingredient-table">
-          <tr>
-            <th>Ingredient</th>
-            <th>Proportion</th>
-          </tr>
-          {this.ingredients()}
+          <tbody>
+            <tr>
+              <th>Ingredient</th>
+              <th>Proportion</th>
+            </tr>
+            {this.ingredients()}
+          </tbody>
         </table>
       </div>
     )

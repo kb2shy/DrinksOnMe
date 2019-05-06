@@ -13,22 +13,12 @@ export default class CocktailContainer extends Component {
   }
 
   renderPrevNextButtons = () => {
-    if (this.props.cocktails.length < 10) {
-      return (
-        <div>
-          <button onClick={this.props.prev10} disabled><h3>Previous 10</h3></button>
-          <button onClick={this.props.next10} disabled><h3>Next 10</h3></button>
-        </div>
-      )
-    } else {
-      return (
-        <div>
-          <button onClick={this.props.prev10} ><h3>Previous 10</h3></button>
-          <button onClick={this.props.next10} ><h3>Next 10</h3></button>
-        </div>
-      )
-    }
-
+    return (
+      <div>
+        <button onClick={this.props.prev10} ><h3>Previous 10</h3></button>
+        <button onClick={this.props.next10} ><h3>Next 10</h3></button>
+      </div>
+    )
   }
 
   render() {
