@@ -15,6 +15,7 @@ export default class App extends React.Component {
       index: 0,
       displayThis: '',
       filterByAlcohol: [],
+      search: '',
     }
   }
 
@@ -57,11 +58,20 @@ export default class App extends React.Component {
     this.setState({ displayThis: 'createCocktail', cocktail: {},})
   }
 
+  onChange = (ev) => {
+    let key = ev.target.name;
+    let value = ev.target.value;
+    let state = {};
+    state[key] = value;
+    console.log(this.state.search)
+    this.setState(state);
+  }
+
   render() {
     return (
       <div>
-        <h1>Mod 4 solo React App from scratch</h1>
-        <h3>Number of cocktails in cocktail list: {this.state.cocktaillist.length} </h3>
+        <h1>Fancy Cocktails</h1>
+        <input type="text" name="search" onChange={this.onChange} placeholder="Search by cocktail"/>
         <div className="app-div">
           <CocktailContainer
             cocktails={this.state.cocktaillist.slice(this.state.index, this.state.index + 10)}
