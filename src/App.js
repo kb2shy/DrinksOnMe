@@ -91,7 +91,11 @@ export default class App extends React.Component {
             prev10={this.prev10}
             onCreateCocktailButton={this.onCreateCocktailButton}
           />
-          <DisplayContainer displayThis={this.state.displayThis} cocktail={this.state.cocktail}/>
+          <DisplayContainer
+            displayThis={this.state.displayThis}
+            cocktail={this.state.cocktail}
+            handleChange={this.handleChange}
+          />
         </div>
       </div>
     )
