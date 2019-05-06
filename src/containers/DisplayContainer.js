@@ -7,11 +7,11 @@ export default class DisplayContainer extends Component {
 
   inDisplayThis = (thisState) => {
     if (thisState === 'cocktailInfo') {
-      console.log("cocktail info will be rendered")
+      // console.log("cocktail info will be rendered")
       return <Cocktail cocktail={this.props.cocktail}/>
     } else if (thisState === 'createCocktail') {
-      console.log("cocktail form will be rendered")
-      return <CocktailForm cocktail={this.props.cocktail}/>
+      // console.log("cocktail form will be rendered")
+      return <CocktailForm cocktail={this.props.cocktail} handleChange={this.props.handleChange}/>
     }
   }
 
