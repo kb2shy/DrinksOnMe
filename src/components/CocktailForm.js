@@ -9,8 +9,6 @@ export default class CocktailForm extends Component {
       description: '',
       instructions: '',
       proportions: [''],
-      ingIndex: 0,
-      ingValue: '',
     }
 
   }
@@ -26,12 +24,27 @@ export default class CocktailForm extends Component {
       this.props.handleChange(value);
     }
 
+    if (key.includes('proportions')) {
+      this.state.proportions[e.target.id] = value
+      this.setState({ proportions: this.state.proportions })
+      console.log(this.state.proportions)
+    }
+
     this.setState(state)
   }
 
+  // onIngChange = (e) => {
+  //   let key = e.target.name;
+  //   let value = e.target.value;
+  //   let proportions = {};
+  //   proportions[key] = value;
+  //   this.setState({});
+  //   console.log(value)
+  // }
+
   addIngredientField = (ing, index) => {
     return (<div key={index}>
-      <input value={ing.value} name={index} onChange={this.onChange}/>
+      <input id={index} type="text" name={`proportions${index}`} onChange={this.onChange}/>
       <button onClick={(e) => {e.preventDefault(); this.addIngredient(ing)}}>Add</button>
       </div>
     )
@@ -39,6 +52,11 @@ export default class CocktailForm extends Component {
 
   addIngredient = (ing) => {
     this.setState( { proportions: [...this.state.proportions, ing]})
+  }
+
+  handleCocktailSubmit = (ev) => {
+    ev.preventDefault();
+    console.log("submit button pressed", this.state);
   }
 
   render() {
@@ -63,7 +81,9 @@ export default class CocktailForm extends Component {
 
           </div>
           <div className="createcocktailsubmitbtn">
-            <input type="submit" value="Create Cocktail"/>
+            <input type="submit" value="Create Cocktail"
+                onClick={(ev) => this.handleCocktailSubmit(ev)}
+            />
           </div>
         </form>
       </div>

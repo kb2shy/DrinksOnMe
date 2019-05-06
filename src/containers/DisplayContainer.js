@@ -11,7 +11,10 @@ export default class DisplayContainer extends Component {
       return <Cocktail cocktail={this.props.cocktail}/>
     } else if (thisState === 'createCocktail') {
       // console.log("cocktail form will be rendered")
-      return <CocktailForm cocktail={this.props.cocktail} handleChange={this.props.handleChange}/>
+      return <CocktailForm cocktail={this.props.cocktail}
+                handleChange={this.props.handleChange}
+                handleCocktailSubmit={this.props.handleCocktailSubmit}
+              />
     }
   }
 
