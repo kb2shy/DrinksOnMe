@@ -14,24 +14,29 @@ export default class CocktailContainer extends Component {
   render() {
     return (
       <div className="cocktailcontainer-div">
-        <h1>Cocktail List</h1>
-        <ul>
-          {this.cocktails()}
-        </ul>
 
-        <div>
-          <button onClick={this.props.prev10}>
-            <h3>Previous 10</h3>
-          </button>
-          <button onClick={this.props.next10}>
-            <h3>Next 10</h3>
-          </button>
+        <div className="cocktailcontainer-list">
+          <h1>Cocktail List</h1>
+          <ul>
+            {this.cocktails()}
+          </ul>
         </div>
 
-        <div>
-          <button onClick={this.props.onCreateCocktailButton}>
-            <h3>Create Cocktail</h3>
-          </button>
+        <div className="cocktailcontainer-buttons">
+          <div>
+            <button onClick={this.props.prev10}>
+              <h3>Previous 10</h3>
+            </button>
+            <button onClick={this.props.next10}>
+              <h3>Next 10</h3>
+            </button>
+          </div>
+
+          <div>
+            <button onClick={this.props.onCreateCocktailButton}>
+              <h3>Create Cocktail</h3>
+            </button>
+          </div>
         </div>
 
       </div>

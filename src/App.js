@@ -11,6 +11,7 @@ export default class App extends React.Component {
     super()
     this.state = {
       cocktaillist: [],
+      filteredcocktaillist: [],
       cocktail: {},
       index: 0,
       displayThis: '',
@@ -22,7 +23,7 @@ export default class App extends React.Component {
     fetch(Cocktail_URL)
     .then(res => res.json())
     .then(cocktails => {
-      this.setState( { cocktaillist: cocktails })
+      this.setState( { cocktaillist: cocktails, filteredcocktaillist: cocktails, })
     })
   }
 
