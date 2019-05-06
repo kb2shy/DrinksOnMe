@@ -8,10 +8,10 @@ export default class Cocktail extends Component {
       // console.log(proportions instanceof Object)
       let propArray = Array.prototype.slice.call(proportions);
       // console.log(propArray instanceof Array)
-      return propArray.map(ing => {
+      return propArray.map((ing, index) => {
         // return info in a table format
         return (
-          <tr>
+          <tr key={index}>
             <td>{ing.ingredient_name}</td>
             <td>{ing.amount}</td>
           </tr>);
