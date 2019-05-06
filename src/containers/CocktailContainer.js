@@ -5,9 +5,9 @@ export default class CocktailContainer extends Component {
 
   cocktails = () => {
     return this.props.cocktails.map((cocktail, index) =>
-      (<li key={index} cocktail={cocktail}
+      (<div key={index} cocktail={cocktail}
            onClick={() => this.props.handleCocktailClick(cocktail)}>
-        {cocktail.name}</li>)
+        {cocktail.name}</div>)
     )
   }
 

@@ -9,7 +9,7 @@ export default class Cocktail extends Component {
       let propArray = Array.prototype.slice.call(proportions);
       // console.log(propArray instanceof Array)
       return propArray.map(ing => {
-        return <li>{ing.ingredient_name}</li>;
+        return (<li>{ing.ingredient_name}</li>);
       })
     }
   }

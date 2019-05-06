@@ -1,5 +1,4 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import CocktailContainer from './containers/CocktailContainer';
 import DisplayContainer from './containers/DisplayContainer'
