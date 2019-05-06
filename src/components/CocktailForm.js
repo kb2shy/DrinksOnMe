@@ -23,7 +23,6 @@ export default class CocktailForm extends Component {
     state[key] = value;
 
     if (key === 'name') {
-      console.log("name to filter cocktail list")
       this.props.handleChange(value);
     }
 
