@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+// import Proportions from './Proportions'
 
 export default class CocktailForm extends Component {
 
@@ -8,12 +9,20 @@ export default class CocktailForm extends Component {
       name: '',
       description: '',
       instructions: '',
-      proportions: [''],
+      proportions: [{
+        ingredient_name: '',
+        amount: ''
+      }],
     }
 
   }
 
   onChange = (e) => {
+    if (["ingredient_name", "amount"].includes(e.target.className)) {
+      let proportions = [...this.state.proportions];
+      proportions[e.target.dataset.id][e.target.className] = e.target.value;
+      this.setState({proportions}, () => console.log(this.state.proportions))
+    }
     let key = e.target.name;
     let value = e.target.value;
 
@@ -24,34 +33,44 @@ export default class CocktailForm extends Component {
       this.props.handleChange(value);
     }
 
-    if (key.includes('proportions')) {
-      this.state.proportions[e.target.id] = value
-      this.setState({ proportions: this.state.proportions })
-      console.log(this.state.proportions)
-    }
-
     this.setState(state)
+    // console.log(state)
   }
 
-  // onIngChange = (e) => {
-  //   let key = e.target.name;
-  //   let value = e.target.value;
-  //   let proportions = {};
-  //   proportions[key] = value;
-  //   this.setState({});
-  //   console.log(value)
-  // }
+  onIngredientChange = (e) => {
+      let proportions = [...this.state.proportions];
+      proportions[e.target.dataset.id][e.target.className] = e.target.value;
+      this.setState({proportions}, () => console.log(this.state.proportions));
+  }
 
   addIngredientField = (ing, index) => {
-    return (<div key={index}>
-      <input id={index} type="text" name={`proportions${index}`} onChange={this.onChange}/>
-      <button onClick={(e) => {e.preventDefault(); this.addIngredient(ing)}}>Add</button>
+    let ingId = `ing-${index}`, amtId = `amt-${index}`
+    return (
+      <div key={index}>
+        <input id={ingId} type="text" name={ingId} data-id={index} className="ingredient_name"
+          placeholder="ingredient name" onChange={this.onIngredientChange} value={this.state.proportions[index].ingredient_name}
+        />
+        <input id={amtId} type="text" name={amtId} data-id={index} className="amount"
+          placeholder="amount" onChange={this.onIngredientChange} value={this.state.proportions[index].amount}
+        />
+        <button onClick={(e) => {e.preventDefault(); this.addIngredient(ing)}}>Add</button>
+        <button onClick={(e) => {e.preventDefault(); this.removeIngredient(index)}}>Remove</button>
       </div>
     )
   }
 
   addIngredient = (ing) => {
-    this.setState( { proportions: [...this.state.proportions, ing]})
+    this.setState({ proportions: [...this.state.proportions, ing] })
+  }
+
+  removeIngredient = (index) => {
+    // console.log("delete button pressed")
+    if (this.state.proportions.length === 1) return;
+    let proportions = this.state.proportions;
+    proportions.splice(index);
+    // console.log("this index to be deleted", index);
+    // console.log(proportions)
+    this.setState({proportions})
   }
 
   handleCocktailSubmit = (ev) => {
@@ -60,30 +79,31 @@ export default class CocktailForm extends Component {
   }
 
   render() {
+    let {name, description, instructions, proportions} = this.state;
     return (
       <div className="cocktailform-div">
         <h1>Create Cocktail</h1>
-        <form>
-          Name: <input type="text" name="name" value={this.state.name}
+        <form onChange={this.handleChange} onSubmit={this.handleCocktailSubmit}>
+          Name: <input type="text" name="name" value={name}
             onChange={this.onChange}/>
           <br/>
           Description: <input type="text" name="description"
-            value={this.state.description} onChange={this.onChange}/>
+            value={description} onChange={this.onChange}/>
           <br/>
           Instructions: <input type="text" name="instructions"
-            value={this.state.instructions} onChange={this.onChange}/>
+            value={instructions} onChange={this.onChange}/>
           <br/>
           <div>
             <h4>Proportions:</h4>
             <ul>
-              {this.state.proportions.map((ing, index) => this.addIngredientField(ing, index))}
+              {proportions.map((ing, idx) => {
+                return this.addIngredientField(ing, idx)
+              })}
             </ul>
 
           </div>
           <div className="createcocktailsubmitbtn">
-            <input type="submit" value="Create Cocktail"
-                onClick={(ev) => this.handleCocktailSubmit(ev)}
-            />
+            <input type="submit" value="Create Cocktail"/>
           </div>
         </form>
       </div>
