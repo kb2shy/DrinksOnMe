@@ -69,7 +69,7 @@ export default class App extends React.Component {
 
   handleChange = (value) => {
     let filteredcocktaillist = this.state.cocktaillist.filter(cocktail => {
-      if (cocktail.name.toLowerCase().startsWith(value)) {
+      if (cocktail.name.toLowerCase().startsWith(value.toLowerCase())) {
         return true;
       }
       return false;
@@ -78,18 +78,19 @@ export default class App extends React.Component {
   }
 
   handleCocktailSubmit = (cocktail) => {
+    console.log(cocktail)
     // trigger a display of this cocktail in cocktail component
     this.setState({ cocktaillist: [...this.state.cocktaillist, cocktail],
                     displayThis: 'newCocktailInfo'})
 
-    let cocktailData = {name: cocktail.name,
+    //send this data to Cocktail_URL
+    let cocktailData = {
+      name: cocktail.name,
       description: cocktail.description,
-      instructions: cocktail.instructions
+      instructions: cocktail.instructions,
+      proportions: cocktail.proportions,
+      source: '',
     }
-    console.log(cocktailData)
-    debugger
-
-    let cocktailIngredients = {proportions: cocktail.proportions}
     fetch(Cocktail_URL, {
       method: "POST",
       headers: {
@@ -98,6 +99,8 @@ export default class App extends React.Component {
       body: JSON.stringify(cocktailData)
     })
     .then(res => res.json())
+
+    debugger
   }
 
   render() {
