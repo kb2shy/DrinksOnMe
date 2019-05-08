@@ -90,10 +90,9 @@ export default class App extends React.Component {
       name: cocktail.name,
       description: cocktail.description,
       instructions: cocktail.instructions,
-      proportions: cocktail.proportions,
       source: '',
     }
-    console.log(cocktailData)
+    console.log("cocktail ingredients", cocktail.proportions)
 
     fetch(Cocktail_URL, {
       method: "POST",
@@ -103,7 +102,9 @@ export default class App extends React.Component {
       body: JSON.stringify(cocktailData)
     })
     .then(res => res.json())
-    .then(data => console.log(data, '--------106'))
+    .then(data => {
+      this.setState({ displayThis: "cocktailInfo", cocktail: data})
+    })
   }
 
   render() {
