@@ -28,7 +28,7 @@ export default class App extends React.Component {
   }
 
   handleCocktailClick = (cocktail) => {
-    // console.log("From app this cocktail clicked: ", cocktail);
+    console.log("From app this cocktail clicked: ", cocktail);
     // this.setState({ cocktail })
     fetch(Cocktail_URL + `/${cocktail.id}`)
     .then(res => res.json())
@@ -79,11 +79,6 @@ export default class App extends React.Component {
   }
 
   handleCocktailSubmit = (cocktail) => {
-    console.log("in handleCocktailSubmit", cocktail)
-    // trigger a display of this cocktail in cocktail component
-    this.setState({ cocktaillist: [...this.state.cocktaillist, cocktail],
-                    filteredcocktaillist: [...this.state.filteredcocktaillist, cocktail],
-                    displayThis: 'blank'})
 
     //send this data to Cocktail_URL
     let cocktailData = {
@@ -92,7 +87,6 @@ export default class App extends React.Component {
       instructions: cocktail.instructions,
       source: '',
     }
-    console.log("cocktail ingredients", cocktail.proportions)
 
     fetch(Cocktail_URL, {
       method: "POST",
@@ -103,7 +97,16 @@ export default class App extends React.Component {
     })
     .then(res => res.json())
     .then(data => {
-      this.setState({ displayThis: "cocktailInfo", cocktail: data})
+      let {name, description, instructions} = data
+      cocktail = {
+        name: name,
+        description: description,
+        instructions: instructions,
+        proportions: cocktail.proportions
+      }
+      // console.log(cocktail)
+      this.setState({ cocktaillist: [...this.state.cocktaillist, cocktail],
+                      displayThis: "cocktailInfo", cocktail: cocktail})
     })
   }
 
