@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Cocktail from '../components/Cocktail'
-import CocktailForm from '../components/CocktailForm'
+import CocktailForm2 from '../components/CocktailForm2'
 import '../App.css'
 
 export default class DisplayContainer extends Component {
@@ -11,7 +11,10 @@ export default class DisplayContainer extends Component {
       return <Cocktail cocktail={this.props.cocktail}/>
     } else if (thisState === 'createCocktail') {
       // console.log("cocktail form will be rendered")
-      return <CocktailForm cocktail={this.props.cocktail} handleChange={this.props.handleChange}/>
+      return <CocktailForm2 cocktail={this.props.cocktail}
+                handleChange={this.props.handleChange}
+                handleCocktailSubmit={this.props.handleCocktailSubmit}
+              />
     }
   }
 

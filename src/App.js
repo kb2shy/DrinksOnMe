@@ -78,6 +78,10 @@ export default class App extends React.Component {
     this.setState({ index: 0, filteredcocktaillist: filteredcocktaillist })
   }
 
+  handleCocktailSubmit = (cocktail) => {
+
+  }
+
   render() {
     return (
       <div>
@@ -95,6 +99,7 @@ export default class App extends React.Component {
             displayThis={this.state.displayThis}
             cocktail={this.state.cocktail}
             handleChange={this.handleChange}
+            handleCocktailSubmit={this.handleCocktailSubmit}
           />
         </div>
       </div>
