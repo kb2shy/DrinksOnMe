@@ -15,6 +15,8 @@ export default class DisplayContainer extends Component {
                 handleChange={this.props.handleChange}
                 handleCocktailSubmit={this.props.handleCocktailSubmit}
               />
+    } else if (thisState === 'newCocktailInfo') {
+      return <Cocktail cocktail={this.props.cocktail}/>
     }
   }
 
