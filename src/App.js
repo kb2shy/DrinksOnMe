@@ -59,7 +59,6 @@ export default class App extends React.Component {
   }
 
   onChange = (ev) => {
-    console.log("in onChange,", ev.target.value)
     let key = ev.target.name;
     let value = ev.target.value;
     let state = {};
@@ -70,7 +69,7 @@ export default class App extends React.Component {
 
   handleChange = (value) => {
     let filteredcocktaillist = this.state.cocktaillist.filter(cocktail => {
-      if (cocktail.name.toLowerCase().startsWith(value)) {
+      if (cocktail.name.toLowerCase().startsWith(value.toLowerCase())) {
         return true;
       }
       return false;
@@ -79,14 +78,37 @@ export default class App extends React.Component {
   }
 
   handleCocktailSubmit = (cocktail) => {
+    console.log(cocktail)
+    // trigger a display of this cocktail in cocktail component
+    this.setState({ cocktaillist: [...this.state.cocktaillist, cocktail],
+                    displayThis: 'newCocktailInfo'})
 
+    //send this data to Cocktail_URL
+    let cocktailData = {
+      name: cocktail.name,
+      description: cocktail.description,
+      instructions: cocktail.instructions,
+      proportions: cocktail.proportions,
+      source: '',
+    }
+    fetch(Cocktail_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application:json",
+      },
+      body: JSON.stringify(cocktailData)
+    })
+    .then(res => res.json())
+
+    debugger
   }
 
   render() {
     return (
       <div>
         <h1>Fancy Cocktails</h1>
-        <input type="text" name="search" onChange={(ev) => this.onChange(ev)} placeholder="Search by cocktail"/>
+        <input type="text" name="search" onChange={(ev) => this.onChange(ev)}
+               placeholder="Search by cocktail" value={this.state.search}/>
         <div className="app-div">
           <CocktailContainer
             cocktails={this.state.filteredcocktaillist.slice(this.state.index, this.state.index + 10)}
