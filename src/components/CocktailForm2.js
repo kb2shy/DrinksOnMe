@@ -20,6 +20,9 @@ export default class CocktailForm extends Component {
   }
 
   handleChange = (e) => {
+    if (e.target.name === "name") {
+      this.props.handleChange(e.target.value)
+    }
     if (["ingredient_name", "amount"].includes(e.target.className)) {
       let proportions = [...this.state.proportions];
       proportions[e.target.dataset.id][e.target.className] = e.target.value;
@@ -31,6 +34,8 @@ export default class CocktailForm extends Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
+    let cocktail = this.state;
+    console.log(cocktail)
   }
 
   render() {
@@ -39,7 +44,7 @@ export default class CocktailForm extends Component {
     return (
       <div className="cocktailform-div">
         <h1>Create Cocktail Form</h1>
-        <form onChange={this.handleChange}>
+        <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
         Name: <input type="text" name="name" value={name}
           onChange={this.onChange}/>
         <br/>
