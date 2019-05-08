@@ -36,7 +36,7 @@ export default class CocktailForm extends Component {
     e.preventDefault();
     let cocktail = this.state;
     this.props.handleCocktailSubmit(cocktail);
-    console.log("submit button pressed", this.state)
+    // console.log("submit button pressed", this.state)
   }
 
   render() {
@@ -47,11 +47,11 @@ export default class CocktailForm extends Component {
       <div className="cocktailform-div">
         <h1>Create Cocktail Form</h1>
         <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-        Name: <input type="text" name="name" />
+        Name: <input type="text" name="name" value={name}/>
         <br/>
-        Description: <input type="text" name="description" />
+        Description: <input type="text" name="description" value={description}/>
         <br/>
-        Instructions: <input type="text" name="instructions" />
+        Instructions: <input type="text" name="instructions" value={instructions}/>
         <br/>
         <button onClick={this.addIngredient}>Add Ingredient</button>
         {proportions.map((val, idx) => {
