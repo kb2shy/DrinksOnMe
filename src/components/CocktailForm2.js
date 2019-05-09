@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import Form  from 'react-bootstrap/Form'
+import Button from 'react-bootstrap/Button'
+import { Grid, Col } from 'react-bootstrap'
 // import Proportions from './Proportions';
 
 export default class CocktailForm extends Component {
@@ -36,7 +39,7 @@ export default class CocktailForm extends Component {
     e.preventDefault();
     let cocktail = this.state;
     this.props.handleCocktailSubmit(cocktail);
-    // console.log("submit button pressed", this.state)
+    console.log("submit button pressed", this.state)
   }
 
   render() {
@@ -46,38 +49,58 @@ export default class CocktailForm extends Component {
     return (
       <div className="cocktailform-div">
         <h1>Create Cocktail Form</h1>
-        <form onChange={this.handleChange} onSubmit={this.handleSubmit}>
-        Name: <input type="text" name="name" value={name}/>
-        <br/>
-        Description: <input type="text" name="description" value={description}/>
-        <br/>
-        Instructions: <input type="text" name="instructions" value={instructions}/>
-        <br/>
-        <button onClick={this.addIngredient}>Add Ingredient</button>
-        {proportions.map((val, idx) => {
-          let ingId = `ing-${idx}`, amtId=`amt-${idx}`;
-          return (
-            <div key={idx}>
-              <input
-                type="text"
-                name={ingId}
-                data-id={idx}
-                id={ingId}
-                className="ingredient_name"
-                placeholder="ingredient name"
-              />
-              <input
-                type="text"
-                name={amtId}
-                data-id={idx}
-                id={amtId}
-                className="amount"
-                placeholder="amount"
-              />
-            </div>
-          )})}
-          <input type="submit" value="Submit" />
-        </form>
+        <Form onChange={this.handleChange} onSubmit={this.handleSubmit}>
+
+          <Form.Group>
+            <Form.Label>Name:</Form.Label>
+            <Form.Control type="text" value={name} name="name"/>
+            <Form.Label>Description:</Form.Label>
+            <Form.Control as='textarea' value={description} name="description"/>
+            <Form.Label>Instructions:</Form.Label>
+            <Form.Control as='textarea' value={instructions} name="instructions"/>
+          </Form.Group>
+
+          <Button onClick={this.addIngredient}>
+            Add Ingredient
+          </Button>
+
+          {proportions.map((val, idx) => {
+            let ingId = `ing-${idx}`, amtId=`amt-${idx}`;
+            return (
+              <div key={idx}>
+                <Form.Row>
+                  <Form.Group as={Col}>
+                    <Form.Control
+                      type="text"
+                      name={ingId}
+                      data-id={idx}
+                      id={ingId}
+                      className="ingredient_name"
+                      placeholder="ingredient name"
+                    />
+                  </Form.Group>
+                  <Form.Group as={Col}>
+                    <Form.Control
+                      type="text"
+                      name={amtId}
+                      data-id={idx}
+                      id={amtId}
+                      className="amount"
+                      placeholder="amount"
+                    />
+                  </Form.Group>
+                </Form.Row>
+              </div>
+            )})}
+
+            <Form.Row>
+              <Form.Group>
+                <Form.Control type="submit" value="Submit" size="sm"/>
+              </Form.Group>
+            </Form.Row>
+
+        </Form>
+
       </div>
     )
   }
