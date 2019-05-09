@@ -106,8 +106,29 @@ export default class App extends React.Component {
       }
       // console.log(cocktail)
       this.setState({ cocktaillist: [...this.state.cocktaillist, cocktail],
-                      displayThis: "cocktailInfo", cocktail: cocktail})
+                      displayThis: "cocktailInfo", cocktail: cocktail});
     })
+  }
+
+  onDeleteClick = (cocktail) => {
+
+    let cocktaillist = this.state.cocktaillist;
+    let index = cocktaillist.findIndex((c, index) => {
+      return c.id === cocktail.id
+    });
+    let removed = cocktaillist.splice(index, 1);
+    this.setState({cocktaillist})
+
+    debugger
+
+    fetch(Cocktail_URL + `/${cocktail.id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({cocktail})
+    })
+    .then(res => res.json())
   }
 
   render() {
@@ -129,6 +150,7 @@ export default class App extends React.Component {
             cocktail={this.state.cocktail}
             handleChange={this.handleChange}
             handleCocktailSubmit={this.handleCocktailSubmit}
+            onDeleteClick={this.onDeleteClick}
           />
         </div>
       </div>
