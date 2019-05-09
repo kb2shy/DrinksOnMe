@@ -117,8 +117,6 @@ export default class App extends React.Component {
     let removed = cocktaillist.splice(index, 1);
     this.setState({cocktaillist})
 
-    debugger
-
     fetch(Cocktail_URL + `/${cocktail.id}`, {
         method: "DELETE",
         headers: {

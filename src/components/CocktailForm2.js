@@ -23,16 +23,25 @@ export default class CocktailForm extends Component {
   }
 
   handleChange = (e) => {
+    // console.log(e.target.name, ":", e.target.value)
     if (e.target.name === "name") {
       this.props.handleChange(e.target.value.toLowerCase())
     }
-    if (["ingredient_name", "amount"].includes(e.target.className)) {
+    if ((e.target.name).startsWith("ing")) {
       let proportions = [...this.state.proportions];
-      proportions[e.target.dataset.id][e.target.className] = e.target.value;
+      proportions[e.target.dataset.id]["ingredient_name"] = e.target.value;
       this.setState({proportions})
-    } else {
-      this.setState({[e.target.name]: e.target.value})
+      console.log(this.state)
+      return
     }
+    if ((e.target.name).startsWith("amt")) {
+      let proportions = [...this.state.proportions];
+      proportions[e.target.dataset.id]["amount"] = e.target.value;
+      this.setState({proportions})
+      console.log(this.state)
+      return
+    }
+    this.setState({[e.target.name]: e.target.value})
   }
 
   handleSubmit = (e) => {
