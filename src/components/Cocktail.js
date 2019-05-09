@@ -37,6 +37,10 @@ export default class Cocktail extends Component {
             {this.ingredients()}
           </tbody>
         </table>
+        <br/>
+        <button style={{ backgroundColor: 'red'}} onClick={() => this.props.onDeleteClick(this.props.cocktail)}>
+          <h3>Delete</h3>
+        </button>
       </div>
     )
   }

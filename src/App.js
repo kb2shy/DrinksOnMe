@@ -28,7 +28,7 @@ export default class App extends React.Component {
   }
 
   handleCocktailClick = (cocktail) => {
-    // console.log("From app this cocktail clicked: ", cocktail);
+    console.log("From app this cocktail clicked: ", cocktail);
     // this.setState({ cocktail })
     fetch(Cocktail_URL + `/${cocktail.id}`)
     .then(res => res.json())
@@ -79,21 +79,14 @@ export default class App extends React.Component {
   }
 
   handleCocktailSubmit = (cocktail) => {
-    console.log("in handleCocktailSubmit", cocktail)
-    // trigger a display of this cocktail in cocktail component
-    this.setState({ cocktaillist: [...this.state.cocktaillist, cocktail],
-                    filteredcocktaillist: [...this.state.filteredcocktaillist, cocktail],
-                    displayThis: 'blank'})
 
     //send this data to Cocktail_URL
     let cocktailData = {
       name: cocktail.name,
       description: cocktail.description,
       instructions: cocktail.instructions,
-      proportions: cocktail.proportions,
       source: '',
     }
-    console.log(cocktailData)
 
     fetch(Cocktail_URL, {
       method: "POST",
@@ -103,7 +96,39 @@ export default class App extends React.Component {
       body: JSON.stringify(cocktailData)
     })
     .then(res => res.json())
-    .then(data => console.log(data, '--------106'))
+    .then(data => {
+      let {name, description, instructions} = data
+      cocktail = {
+        name: name,
+        description: description,
+        instructions: instructions,
+        proportions: cocktail.proportions
+      }
+      // console.log(cocktail)
+      this.setState({ cocktaillist: [...this.state.cocktaillist, cocktail],
+                      displayThis: "cocktailInfo", cocktail: cocktail});
+    })
+  }
+
+  onDeleteClick = (cocktail) => {
+
+    let cocktaillist = this.state.cocktaillist;
+    let index = cocktaillist.findIndex((c, index) => {
+      return c.id === cocktail.id
+    });
+    let removed = cocktaillist.splice(index, 1);
+    this.setState({cocktaillist})
+
+    debugger
+
+    fetch(Cocktail_URL + `/${cocktail.id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({cocktail})
+    })
+    .then(res => res.json())
   }
 
   render() {
@@ -125,6 +150,7 @@ export default class App extends React.Component {
             cocktail={this.state.cocktail}
             handleChange={this.handleChange}
             handleCocktailSubmit={this.handleCocktailSubmit}
+            onDeleteClick={this.onDeleteClick}
           />
         </div>
       </div>
