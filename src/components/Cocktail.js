@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Table from 'react-bootstrap/Table'
 
 export default class Cocktail extends Component {
 
@@ -28,15 +29,17 @@ export default class Cocktail extends Component {
         <h3>Instructions</h3>
         <p>{this.props.cocktail.instructions}</p>
         <h4>Ingredients</h4>
-        <table className="cocktailingredient-table">
-          <tbody>
+        <Table striped className="cocktailingredient-table">
+          <thead>
             <tr>
               <th>Ingredient</th>
               <th>Proportion</th>
             </tr>
+          </thead>
+          <tbody>
             {this.ingredients()}
           </tbody>
-        </table>
+        </Table>
         <br/>
         <button style={{ backgroundColor: 'red'}} onClick={() => this.props.onDeleteClick(this.props.cocktail)}>
           <h3>Delete</h3>

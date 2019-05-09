@@ -15,8 +15,8 @@ export default class CocktailContainer extends Component {
   renderPrevNextButtons = () => {
     return (
       <div>
-        <button onClick={this.props.prev10} ><h3>Previous 10</h3></button>
-        <button onClick={this.props.next10} ><h3>Next 10</h3></button>
+        <button onClick={this.props.prev10} ><h4>Prev 10</h4></button>
+        <button onClick={this.props.next10} ><h4>Next 10</h4></button>
       </div>
     )
   }
@@ -37,7 +37,7 @@ export default class CocktailContainer extends Component {
 
           <div>
             <button onClick={this.props.onCreateCocktailButton}>
-              <h3>Create Cocktail</h3>
+              <h4>Create Cocktail</h4>
             </button>
           </div>
         </div>

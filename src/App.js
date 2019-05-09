@@ -28,8 +28,6 @@ export default class App extends React.Component {
   }
 
   handleCocktailClick = (cocktail) => {
-    console.log("From app this cocktail clicked: ", cocktail);
-    // this.setState({ cocktail })
     fetch(Cocktail_URL + `/${cocktail.id}`)
     .then(res => res.json())
     .then(cocktail => {
@@ -133,8 +131,8 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Fancy Cocktails</h1>
+      <React.Fragment>
+        <h1>Fancy Cocktail Recipes</h1>
         <input type="text" name="search" onChange={(ev) => this.onChange(ev)}
                placeholder="Search by cocktail" value={this.state.search}/>
         <div className="app-div">
@@ -153,7 +151,7 @@ export default class App extends React.Component {
             onDeleteClick={this.onDeleteClick}
           />
         </div>
-      </div>
+      </React.Fragment>
     )
   }
 }
